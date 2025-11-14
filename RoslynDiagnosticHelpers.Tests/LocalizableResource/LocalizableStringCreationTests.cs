@@ -8,7 +8,7 @@ namespace RoslynHelpers.Tests.LocalizableResource;
 public class LocalizableStringCreationTests
 {
     [Fact]
-    public void LocalizableStringHelper_CreatesLocalizableResourceString()
+    public void CreatesLocalizableResourceString()
     {
         var withNoFormat = LocalizableStringHelper.From<TestResources>
         (
@@ -28,7 +28,7 @@ public class LocalizableStringCreationTests
     }
 
     [Fact]
-    public void LocalizableStringHelper_Creation_YieldsSameResultAs_LocalizableResourceStringCtor()
+    public void YieldsSameResultAs_LocalizableResourceStringCtor()
     {
         var withNoFormatFromHelper = LocalizableStringHelper.From<TestResources>
         (
