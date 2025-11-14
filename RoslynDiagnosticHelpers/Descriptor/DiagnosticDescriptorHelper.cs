@@ -1,5 +1,4 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynHelpers.Descriptor;
 
 
 namespace RoslynHelpers.Descriptor;
