@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="RoslynDiagnosticHelpers.Tests/RoslynDiagnosticHelpers.Tests.csproj" />
+  <Project Path="RoslynDiagnosticHelpers/RoslynDiagnosticHelpers.csproj" />
+</Solution>
