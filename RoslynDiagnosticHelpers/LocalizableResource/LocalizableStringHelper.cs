@@ -8,11 +8,11 @@ public static class LocalizableStringHelper
 {
     public static LocalizableString From<TResource>(string resourceName, ResourceManager resourceManager)
     {
-        return new LocalizableResourceString(nameof(resourceName), resourceManager, typeof(TResource));
+        return new LocalizableResourceString(resourceName, resourceManager, typeof(TResource));
     }
 
     public static LocalizableString From<TResource>(string resourceName, ResourceManager resourceManager, params string[] formatArguments)
     {
-        return new LocalizableResourceString(nameof(resourceName), resourceManager, typeof(TResource), formatArguments);
+        return new LocalizableResourceString(resourceName, resourceManager, typeof(TResource), formatArguments);
     }
 }
