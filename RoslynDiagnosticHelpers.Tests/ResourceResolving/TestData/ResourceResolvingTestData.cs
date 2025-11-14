@@ -32,15 +32,15 @@ public class ResourceResolvingTestData
     public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberNoFormatData => new()
     {
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerTitle>(TestResources.ResourceManager),
+            LocalizableStringHelper.From<TestResources, AnalyzerTitle>(),
             nameof(TestResources.AnalyzerTitle)
         },
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerDescription>(TestResources.ResourceManager),
+            LocalizableStringHelper.From<TestResources, AnalyzerDescription>(),
             nameof(TestResources.AnalyzerDescription)
         },
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerMessageFormat>(TestResources.ResourceManager),
+            LocalizableStringHelper.From<TestResources, AnalyzerMessageFormat>(),
             nameof(TestResources.AnalyzerMessageFormat)
         }
     };
@@ -49,15 +49,15 @@ public class ResourceResolvingTestData
     public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberFormatData => new()
     {
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerTitle>(TestResources.ResourceManager, DummyFormat),
+            LocalizableStringHelper.From<TestResources, AnalyzerTitle>(DummyFormat),
             nameof(TestResources.AnalyzerTitle)
         },
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerDescription>(TestResources.ResourceManager, DummyFormat),
+            LocalizableStringHelper.From<TestResources, AnalyzerDescription>(DummyFormat),
             nameof(TestResources.AnalyzerDescription)
         },
         {
-            LocalizableStringHelper.From<TestResources, AnalyzerMessageFormat>(TestResources.ResourceManager, DummyFormat),
+            LocalizableStringHelper.From<TestResources, AnalyzerMessageFormat>(DummyFormat),
             nameof(TestResources.AnalyzerMessageFormat)
         }
     };

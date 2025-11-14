@@ -10,6 +10,16 @@ public class ResolverTests
     public static TheoryData<string> ResourceIdentifierCollection => ResourceResolvingTestData.ResourceIdentifierCollectionData;
     public static TheoryData<string, string> ResourceIdentifierToClassMemberMap => ResourceResolvingTestData.ResourceIdentifierToClassMemberMappingData;
 
+
+    [Fact]
+    public void ResourceManagerResolver_YieldsSameResultAs_ClassMember()
+    {
+        var resolved = AnalyzerResourceManagerResolver<TestResources>.Get();
+        var classProperty = TestResources.ResourceManager;
+
+        Assert.Equal(resolved, classProperty);
+    }
+
     [Theory]
     [MemberData(nameof(ResourceIdentifierCollection))]
     public void ReturnsString(string resourceIdentifier)
