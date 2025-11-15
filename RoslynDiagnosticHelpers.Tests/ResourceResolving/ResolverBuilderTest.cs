@@ -11,7 +11,7 @@ public class ResolverBuilderTest
 
     [Theory]
     [MemberData(nameof(ResourceIdentifierCollection))]
-    public void Creates_ResolverDelegate(string resourceIdentifier)
+    internal void Creates_ResolverDelegate(string resourceIdentifier)
     {
         var resolver = ResolverBuilder.Build<TestResources>(resourceIdentifier);
 

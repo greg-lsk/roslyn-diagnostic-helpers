@@ -12,7 +12,7 @@ public class ResolverTests
 
 
     [Fact]
-    public void ResourceManagerResolver_YieldsSameResultAs_ClassMember()
+    internal void ResourceManagerResolver_YieldsSameResultAs_ClassMember()
     {
         var resolved = AnalyzerResourceManagerResolver<TestResources>.Get();
         var classProperty = TestResources.ResourceManager;
@@ -22,7 +22,7 @@ public class ResolverTests
 
     [Theory]
     [MemberData(nameof(ResourceIdentifierCollection))]
-    public void ReturnsString(string resourceIdentifier)
+    internal void ReturnsString(string resourceIdentifier)
     {
         var resolver = ResolverBuilder.Build<TestResources>(resourceIdentifier);
         var retValue = resolver();
@@ -33,7 +33,7 @@ public class ResolverTests
 
     [Theory]
     [MemberData(nameof(ResourceIdentifierToClassMemberMap))]
-    public void YieldsSameResult_As_NameOfKeyword(string identifier, string nameOfClassMember)
+    internal void YieldsSameResult_As_NameOfKeyword(string identifier, string nameOfClassMember)
     {
         var resolver = ResolverBuilder.Build<TestResources>(identifier);
         var resolverRetValue = resolver();

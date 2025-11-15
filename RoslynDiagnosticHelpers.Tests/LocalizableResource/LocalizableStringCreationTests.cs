@@ -16,7 +16,7 @@ public class LocalizableStringCreationTests
 
     [Theory]
     [MemberData(nameof(FromHelperAndNameofSourceMemberNoFormatCollection))]
-    public void YieldsSameResultAs_LocalizableResourceStringCtor_NoFormat(LocalizableString fromHelper, string nameofSourceMember)
+    internal void YieldsSameResultAs_LocalizableResourceStringCtor_NoFormat(LocalizableString fromHelper, string nameofSourceMember)
     {
         var withNoFormatFromCtor = new LocalizableResourceString
         (
@@ -30,7 +30,7 @@ public class LocalizableStringCreationTests
 
     [Theory]
     [MemberData(nameof(FromHelperAndNameofSourceMemberFormatCollection))]
-    public void YieldsSameResultAs_LocalizableResourceStringCtor_Format(LocalizableString fromHelper, string nameofSourceMember)
+    internal void YieldsSameResultAs_LocalizableResourceStringCtor_Format(LocalizableString fromHelper, string nameofSourceMember)
     {
         var withFormatFromCtor = new LocalizableResourceString
         (

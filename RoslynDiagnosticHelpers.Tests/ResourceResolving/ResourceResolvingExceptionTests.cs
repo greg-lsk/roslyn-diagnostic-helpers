@@ -9,14 +9,14 @@ namespace RoslynHelpers.Tests.ResourceResolving;
 public class ResourceResolvingExceptionTests
 {
     [Fact]
-    public void Static_ResolveBuilders_FromExistingSource_ThrowWhen_BuildMethodIsCalled_WithInvalidMember()
+    internal void Static_ResolveBuilders_FromExistingSource_ThrowWhen_BuildMethodIsCalled_WithInvalidMember()
     {
         Assert.Throws<InvalidResourceResolutionException<TestResources>>(() => ResolverBuilder.Build<TestResources>(NonExistantResource));
     }
 
 
     [Fact]
-    public void Static_Resolvers_OnExistingSource_ThrowOn_FirstAccessToAnInvalidMember()
+    internal void Static_Resolvers_OnExistingSource_ThrowOn_FirstAccessToAnInvalidMember()
     {
         Assert.Throws<TypeInitializationException>(() => NonExistantResourceResolver<TestResources>.Get);
     }

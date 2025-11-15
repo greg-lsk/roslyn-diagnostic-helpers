@@ -11,7 +11,7 @@ public class ResourceTests
 
     [Theory]
     [MemberData(nameof(ResourceToResourceClassMap))]
-    public void Title_YiedsSameResultAs_NameOfKeyword(IResource resource, string sourceFileMember)
+    internal void Title_YiedsSameResultAs_NameOfKeyword(IResource resource, string sourceFileMember)
     {
         var resourceValue = resource.GetFrom<TestResources>();
         Assert.Equal(sourceFileMember, resourceValue);

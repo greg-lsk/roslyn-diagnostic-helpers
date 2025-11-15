@@ -8,7 +8,7 @@ namespace RoslynHelpers.Tests.Descriptor;
 public class DescriptorCreationTests
 {
     [Fact]
-    public void TypeCreatedIsDiagnosticDescriptor()
+    internal void TypeCreatedIsDiagnosticDescriptor()
     {
         var created = DiagnosticDescriptorHelper.Create<UnlocalizableDescriptor>();
         Assert.IsType<DiagnosticDescriptor>(created);
