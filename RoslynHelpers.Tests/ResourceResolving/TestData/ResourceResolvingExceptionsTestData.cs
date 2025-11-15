@@ -1,4 +1,5 @@
-﻿using RoslynHelpers.Exceptions;
+﻿using System.Resources;
+using RoslynHelpers.Exceptions;
 using RoslynHelpers._Internals.ResourceResolving;
 using RoslynHelpers.Tests.LocalizableResource.TestData;
 
@@ -11,8 +12,8 @@ internal static class ResourceResolvingExceptionsTestData
     internal static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType_Data => new()
     {
         {
-            () => ResolverBuilder<TestResources>.ValueOf<string>(InvalidResourceManagerName),
-            typeof(InvalidResourceResolutionException<TestResources, string>)
+            () => ResolverBuilder<TestResources>.ValueOf<ResourceManager>(InvalidResourceManagerName),
+            typeof(InvalidResourceResolutionException<TestResources, ResourceManager>)
         }
     };
 }

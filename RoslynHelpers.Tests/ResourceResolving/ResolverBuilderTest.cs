@@ -8,8 +8,9 @@ public class ResolverBuilderTest
     public static TheoryData<(Delegate, Type)> ReturnsExpectedResolver 
         => ResourceResolvingTestData.BuilderReturnsExpectedResolver_Data;
 
-    public static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType => 
-        ResourceResolvingExceptionsTestData.InvalidResolverBuilderInvocation_ExpectedExceptionType_Data;
+    public static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType 
+        => ResourceResolvingExceptionsTestData.InvalidResolverBuilderInvocation_ExpectedExceptionType_Data;
+
 
     [Theory]
     [MemberData(nameof(ReturnsExpectedResolver))]
@@ -25,6 +26,6 @@ public class ResolverBuilderTest
     {
         var caught = Record.Exception(invalidInvocation);
 
-        Assert.Equal(caught.GetType(), expectedExceptionType);
+        Assert.Equal(expectedExceptionType, caught.GetType());
     }
 }
