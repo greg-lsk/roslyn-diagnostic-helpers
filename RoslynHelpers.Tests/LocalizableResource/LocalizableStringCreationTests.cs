@@ -7,32 +7,32 @@ namespace RoslynHelpers.Tests.LocalizableResource;
 
 public class LocalizableStringCreationTests
 {
-    public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberNoFormatCollection
-        => ResourceResolvingTestData.FromHelperAndNameofSourceMemberNoFormatData;
+    public static TheoryData<LocalizableString, string> FromHelper_NameofSourceMember_NoFormat
+        => ResourceResolvingTestData.FromHelper_NameofSourceMember_NoFormat_Data;
 
-    public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberFormatCollection
-        => ResourceResolvingTestData.FromHelperAndNameofSourceMemberFormatData;
+    public static TheoryData<LocalizableString, string> FromHelper_NameofSourceMember_Format
+        => ResourceResolvingTestData.FromHelper_NameofSourceMember_Format_Data;
 
 
     [Theory]
-    [MemberData(nameof(FromHelperAndNameofSourceMemberNoFormatCollection))]
+    [MemberData(nameof(FromHelper_NameofSourceMember_NoFormat))]
     internal void YieldsSameResultAs_LocalizableResourceStringCtor_NoFormat(LocalizableString fromHelper, string nameofSourceMember)
     {
-        var withNoFormatFromCtor = new LocalizableResourceString
+        var fromCtor = new LocalizableResourceString
         (
             nameofSourceMember,
             TestResources.ResourceManager,
             typeof(TestResources)
         );
 
-        Assert.True(fromHelper.Equals(withNoFormatFromCtor));
+        Assert.True(fromHelper.Equals(fromCtor));
     }
 
     [Theory]
-    [MemberData(nameof(FromHelperAndNameofSourceMemberFormatCollection))]
+    [MemberData(nameof(FromHelper_NameofSourceMember_Format))]
     internal void YieldsSameResultAs_LocalizableResourceStringCtor_Format(LocalizableString fromHelper, string nameofSourceMember)
     {
-        var withFormatFromCtor = new LocalizableResourceString
+        var fromCtor = new LocalizableResourceString
         (
             nameofSourceMember,
             TestResources.ResourceManager,
@@ -40,6 +40,6 @@ public class LocalizableStringCreationTests
             ResourceResolvingTestData.DummyFormat
         );
 
-        Assert.True(fromHelper.Equals(withFormatFromCtor));
+        Assert.True(fromHelper.Equals(fromCtor));
     }
 }

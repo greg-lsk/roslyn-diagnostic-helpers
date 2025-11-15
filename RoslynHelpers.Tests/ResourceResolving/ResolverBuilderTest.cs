@@ -1,21 +1,30 @@
-﻿using RoslynHelpers._Internals.ResourceResolving;
-using RoslynHelpers.Tests.ResourceResolving.TestData;
-using RoslynHelpers.Tests.LocalizableResource.TestData;
+﻿using RoslynHelpers.Tests.ResourceResolving.TestData;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving;
 
 public class ResolverBuilderTest
 {
-    public static TheoryData<string> ResourceIdentifierCollection => ResourceResolvingTestData.ResourceIdentifierCollectionData;
+    public static TheoryData<(Delegate, Type)> ReturnsExpectedResolver 
+        => ResourceResolvingTestData.BuilderReturnsExpectedResolver_Data;
+
+    public static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType => 
+        ResourceResolvingExceptionsTestData.InvalidResolverBuilderInvocation_ExpectedExceptionType_Data;
 
     [Theory]
-    [MemberData(nameof(ResourceIdentifierCollection))]
-    internal void Creates_ResolverDelegate(string resourceIdentifier)
+    [MemberData(nameof(ReturnsExpectedResolver))]
+    internal void CreatesExpected_ResolverDelegate((Delegate BuilderResult, Type ExpectedType) theoryData)
     {
-        var resolver = ResolverBuilder.Build<TestResources>(resourceIdentifier);
+        Assert.NotNull(theoryData.BuilderResult);
+        Assert.Equal(theoryData.BuilderResult.GetType(), theoryData.ExpectedType);
+    }
 
-        Assert.NotNull(resolver);
-        Assert.IsType<Resolver<TestResources>>(resolver);
+    [Theory]
+    [MemberData(nameof(InvalidResolverBuilderInvocation_ExpectedExceptionType))]
+    internal void Throws_WhenProvidedName_DoesNotMeatExpectedReflectionCriteria(Action invalidInvocation, Type expectedExceptionType)
+    {
+        var caught = Record.Exception(invalidInvocation);
+
+        Assert.Equal(caught.GetType(), expectedExceptionType);
     }
 }

@@ -8,10 +8,4 @@ namespace RoslynHelpers.Tests.ResourceResolving.TestData;
 
 internal static class ResourceResolvingExceptionsMocks
 {
-    internal static void InvalidMemberOfExistantResourceMock(out Mock<IResource> mock)
-    {
-        mock = new();
-        mock.Setup(m => m.GetFrom<TestResources>())
-            .Callback(() => NonExistantResourceResolver<TestResources>.Get());
-    }
 }

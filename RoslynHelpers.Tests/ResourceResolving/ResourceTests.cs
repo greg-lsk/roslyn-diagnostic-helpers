@@ -7,13 +7,14 @@ namespace RoslynHelpers.Tests.ResourceResolving;
 
 public class ResourceTests
 {
-    public static TheoryData<IResource, string> ResourceToResourceClassMap => ResourceResolvingTestData.ResourceToClassMemberMappingData;
+    public static TheoryData<IResource, string> IResourceToSourceResourceMember 
+        => ResourceResolvingTestData.IResourceToSourceResourceMember_ValidMap;
 
     [Theory]
-    [MemberData(nameof(ResourceToResourceClassMap))]
-    internal void Title_YiedsSameResultAs_NameOfKeyword(IResource resource, string sourceFileMember)
+    [MemberData(nameof(IResourceToSourceResourceMember))]
+    internal void IResource_CorrectlyMapsTo_SourceResourceMember(IResource resource, string expectedValue)
     {
         var resourceValue = resource.GetFrom<TestResources>();
-        Assert.Equal(sourceFileMember, resourceValue);
+        Assert.Equal(expectedValue, resourceValue);
     }
 }

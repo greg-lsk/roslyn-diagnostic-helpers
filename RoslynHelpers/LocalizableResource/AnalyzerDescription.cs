@@ -5,5 +5,6 @@ namespace RoslynHelpers.LocalizableResource;
 
 public readonly struct AnalyzerDescription : IResource
 {
-    public string GetFrom<TResources>() where TResources : class => AnalyzerDescriptionResolver<TResources>.Get();
+    public string GetFrom<TResourceSource>() where TResourceSource : class
+        => DiagnosticDescriptorResourceResolver<TResourceSource>.ForDescription();
 }

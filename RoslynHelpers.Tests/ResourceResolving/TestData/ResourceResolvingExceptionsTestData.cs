@@ -1,13 +1,18 @@
-﻿using RoslynHelpers._Internals.ResourceResolving;
+﻿using RoslynHelpers.Exceptions;
+using RoslynHelpers._Internals.ResourceResolving;
+using RoslynHelpers.Tests.LocalizableResource.TestData;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving.TestData;
 
 internal static class ResourceResolvingExceptionsTestData
 {
-    internal static string NonExistantResource => "AnalyzerLogger";
-    internal static class NonExistantResourceResolver<TResource> where TResource : class
+    internal static string InvalidResourceManagerName => "AnalyzerManaggger";
+    internal static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType_Data => new()
     {
-        internal readonly static Resolver<TResource> Get = ResolverBuilder.Build<TResource>(NonExistantResource);
-    }
+        {
+            () => ResolverBuilder<TestResources>.ValueOf<string>(InvalidResourceManagerName),
+            typeof(InvalidResourceResolutionException<TestResources, string>)
+        }
+    };
 }

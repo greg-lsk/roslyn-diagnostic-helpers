@@ -13,7 +13,7 @@ public static class LocalizableStringHelper
         return new LocalizableResourceString
         (
             nameOfLocalizableResource: new TResourceId().GetFrom<TResource>(), 
-            resourceManager:           AnalyzerResourceManagerResolver<TResource>.Get(),
+            resourceManager:           DiagnosticDescriptorResourceResolver<TResource>.ForResourceManager(),
             resourceSource:            typeof(TResource)
         );
     }
@@ -25,7 +25,7 @@ public static class LocalizableStringHelper
         return new LocalizableResourceString
         (
             nameOfLocalizableResource: new TResourceId().GetFrom<TResource>(),
-            resourceManager:           AnalyzerResourceManagerResolver<TResource>.Get(),
+            resourceManager:           DiagnosticDescriptorResourceResolver<TResource>.ForResourceManager(),
             resourceSource:            typeof(TResource),
             formatArguments:           formatArguments
         );

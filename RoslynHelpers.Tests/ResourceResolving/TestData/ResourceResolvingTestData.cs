@@ -1,4 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Resources;
+using Microsoft.CodeAnalysis;
 using RoslynHelpers.LocalizableResource;
 using RoslynHelpers._Internals.ResourceResolving;
 using RoslynHelpers.Tests.LocalizableResource.TestData;
@@ -6,30 +7,36 @@ using RoslynHelpers.Tests.LocalizableResource.TestData;
 
 namespace RoslynHelpers.Tests.ResourceResolving.TestData;
 
-internal class ResourceResolvingTestData
+internal static class ResourceResolvingTestData
 {
-    internal static TheoryData<string> ResourceIdentifierCollectionData =>
+    internal static TheoryData<(Delegate BuilderResult, Type ExpectedResolverType)> BuilderReturnsExpectedResolver_Data => 
     [
-        ResourceIdentifiers.AnalyzerTitle,
-        ResourceIdentifiers.AnalyzerDescription,
-        ResourceIdentifiers.AnalyzerMessageFormat
+        (
+            BuilderResult:        ResolverBuilder<TestResources>.ValueOf<string>(ResourceIdentifiers.AnalyzerTitle),
+            ExpectedResolverType: typeof(Resolver<TestResources, string>) 
+        ),
+        (
+            BuilderResult:        ResolverBuilder<TestResources>.ValueOf<string>(ResourceIdentifiers.AnalyzerDescription),
+            ExpectedResolverType: typeof(Resolver<TestResources, string>)
+        ),
+        (
+            BuilderResult:        ResolverBuilder<TestResources>.ValueOf<string>(ResourceIdentifiers.AnalyzerMessageFormat),
+            ExpectedResolverType: typeof(Resolver<TestResources, string>)
+        ),
+        (
+            BuilderResult:        ResolverBuilder<TestResources>.ValueOf<ResourceManager>(ResourceIdentifiers.AnalyzerResourceManager),
+            ExpectedResolverType: typeof(Resolver<TestResources, ResourceManager>)
+        )
     ];
 
-    internal static TheoryData<IResource, string> ResourceToClassMemberMappingData => new()
+    internal static TheoryData<IResource, string> IResourceToSourceResourceMember_ValidMap => new()
     {
         {new AnalyzerTitle(), nameof(TestResources.AnalyzerTitle)},
         {new AnalyzerDescription(), nameof(TestResources.AnalyzerDescription)},
         {new AnalyzerMessageFormat(),nameof(TestResources.AnalyzerMessageFormat)}
     };
 
-    internal static TheoryData<string, string> ResourceIdentifierToClassMemberMappingData => new()
-    {
-        {ResourceIdentifiers.AnalyzerTitle, nameof(TestResources.AnalyzerTitle)},
-        {ResourceIdentifiers.AnalyzerDescription, nameof(TestResources.AnalyzerDescription)},
-        {ResourceIdentifiers.AnalyzerMessageFormat, nameof(TestResources.AnalyzerMessageFormat)}
-    };
-
-    internal static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberNoFormatData => new()
+    internal static TheoryData<LocalizableString, string> FromHelper_NameofSourceMember_NoFormat_Data => new()
     {
         {
             LocalizableStringHelper.From<TestResources, AnalyzerTitle>(),
@@ -46,7 +53,7 @@ internal class ResourceResolvingTestData
     };
 
     internal static string[] DummyFormat => ["asdasda", "vvvv"];
-    internal static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberFormatData => new()
+    internal static TheoryData<LocalizableString, string> FromHelper_NameofSourceMember_Format_Data => new()
     {
         {
             LocalizableStringHelper.From<TestResources, AnalyzerTitle>(DummyFormat),
