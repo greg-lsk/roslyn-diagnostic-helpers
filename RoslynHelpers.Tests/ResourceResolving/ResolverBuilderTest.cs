@@ -1,4 +1,8 @@
-﻿using RoslynHelpers.Tests.ResourceResolving.TestData;
+﻿using System.Resources;
+using RoslynHelpers.Exceptions;
+using RoslynHelpers._Internals.ResourceResolving;
+using RoslynHelpers.Tests.ResourceResolving.TestData;
+using RoslynHelpers.Tests.LocalizableResource.TestData;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving;
@@ -7,9 +11,6 @@ public class ResolverBuilderTest
 {
     public static TheoryData<(Delegate, Type)> ReturnsExpectedResolver 
         => ResourceResolvingTestData.BuilderReturnsExpectedResolver_Data;
-
-    public static TheoryData<Action, Type> InvalidResolverBuilderInvocation_ExpectedExceptionType 
-        => ResourceResolvingExceptionsTestData.InvalidResolverBuilderInvocation_ExpectedExceptionType_Data;
 
 
     [Theory]
@@ -20,12 +21,14 @@ public class ResolverBuilderTest
         Assert.Equal(theoryData.BuilderResult.GetType(), theoryData.ExpectedType);
     }
 
-    [Theory]
-    [MemberData(nameof(InvalidResolverBuilderInvocation_ExpectedExceptionType))]
-    internal void Throws_WhenProvidedName_DoesNotMeatExpectedReflectionCriteria(Action invalidInvocation, Type expectedExceptionType)
+    [Fact]
+    internal void Throws_WhenProvidedName_DoesNotMeatExpectedReflectionCriteria()
     {
-        var caught = Record.Exception(invalidInvocation);
+        var invalidResourceMemberName = "ResourceManagggger";
 
-        Assert.Equal(expectedExceptionType, caught.GetType());
+        Assert.Throws<InvalidResourceResolutionException<TestResources, ResourceManager>>
+        (
+            () => ResolverBuilder<TestResources>.ValueOf<ResourceManager>(invalidResourceMemberName)
+        );
     }
 }
