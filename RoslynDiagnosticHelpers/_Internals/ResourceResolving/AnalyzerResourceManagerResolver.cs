@@ -1,7 +1,7 @@
 ﻿using System.Resources;
-using System;
 using System.Reflection;
 using System.Linq.Expressions;
+using RoslynHelpers._Internals.ExceptionHandling;
 
 
 namespace RoslynHelpers._Internals.ResourceResolving;
@@ -17,8 +17,12 @@ internal static class AnalyzerResourceManagerResolver<TResource> where TResource
         var resourceType = typeof(TResource);
 
         var propertyInfo = resourceType.GetProperty(ResourceIdentifiers.AnalyzerResourceManager, BindingFlags.Static | BindingFlags.NonPublic)
-            ?? throw new InvalidOperationException
-            ($"{resourceType.Name} does not contain a static no-public property named {ResourceIdentifiers.AnalyzerResourceManager}.");
+            ?? throw ExceptionHandler.ForInvalidResourceResolution<TResource>
+            (
+                ResourceIdentifiers.AnalyzerResourceManager, 
+                BindingFlags.Static, 
+                BindingFlags.NonPublic
+            );
 
         var propertyAccess = Expression.Property(null, propertyInfo);
         return Expression.Lambda<ResourceManagerResolver<TResource>>(propertyAccess).Compile();

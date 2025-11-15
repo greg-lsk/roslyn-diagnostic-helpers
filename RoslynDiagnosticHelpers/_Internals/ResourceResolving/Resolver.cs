@@ -1,6 +1,6 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Linq.Expressions;
+using RoslynHelpers._Internals.ExceptionHandling;
 
 
 namespace RoslynHelpers._Internals.ResourceResolving;
@@ -14,7 +14,12 @@ internal static class ResolverBuilder
         var resourceType = typeof(TResource);
 
         var propertyInfo = resourceType.GetProperty(resource, BindingFlags.Static | BindingFlags.NonPublic)
-            ?? throw new InvalidOperationException($"{resourceType.Name} does not have a static internal property named 'AnalyzerTitle'.");
+            ?? throw ExceptionHandler.ForInvalidResourceResolution<TResource>
+            (
+                resource,
+                BindingFlags.Static,
+                BindingFlags.NonPublic
+            );
 
         var nameOfProperty = Expression.Constant(propertyInfo.Name);
 
