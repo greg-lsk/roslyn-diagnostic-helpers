@@ -1,5 +1,4 @@
-﻿using System.Resources;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using RoslynHelpers._Internals.ResourceResolving;
 
 

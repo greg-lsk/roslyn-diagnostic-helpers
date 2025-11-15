@@ -1,6 +1,4 @@
-﻿using System.Resources;
-
-namespace RoslynHelpers._Internals.ResourceResolving;
+﻿namespace RoslynHelpers._Internals.ResourceResolving;
 
 internal static class ResourceIdentifiers
 {

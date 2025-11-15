@@ -1,6 +1,6 @@
-﻿
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using RoslynHelpers.Descriptor;
+
 
 namespace RoslynHelpers.Tests.Descriptor.TestData;
 

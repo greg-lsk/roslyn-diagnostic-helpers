@@ -1,5 +1,6 @@
 ﻿using RoslynHelpers._Internals.ResourceResolving;
 
+
 namespace RoslynHelpers.LocalizableResource;
 
 public readonly struct AnalyzerDescription : IResource

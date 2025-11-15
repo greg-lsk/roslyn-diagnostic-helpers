@@ -1,5 +1,5 @@
-﻿using RoslynHelpers._Internals.ResourceResolving;
-using RoslynHelpers.Exceptions;
+﻿using RoslynHelpers.Exceptions;
+using RoslynHelpers._Internals.ResourceResolving;
 using RoslynHelpers.Tests.LocalizableResource.TestData;
 using static RoslynHelpers.Tests.ResourceResolving.TestData.ResourceResolvingExceptionsTestData;
 

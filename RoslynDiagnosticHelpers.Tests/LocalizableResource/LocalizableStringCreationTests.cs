@@ -1,6 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynHelpers.Tests.LocalizableResource.TestData;
 using RoslynHelpers.Tests.ResourceResolving.TestData;
+using RoslynHelpers.Tests.LocalizableResource.TestData;
 
 
 namespace RoslynHelpers.Tests.LocalizableResource;

@@ -1,6 +1,7 @@
 ﻿using RoslynHelpers.LocalizableResource;
-using RoslynHelpers.Tests.LocalizableResource.TestData;
 using RoslynHelpers.Tests.ResourceResolving.TestData;
+using RoslynHelpers.Tests.LocalizableResource.TestData;
+
 
 namespace RoslynHelpers.Tests.ResourceResolving;
 
