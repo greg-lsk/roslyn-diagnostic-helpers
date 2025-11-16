@@ -1,8 +1,8 @@
 ﻿using System.Resources;
 using RoslynHelpers.Tests._Common;
-using RoslynHelpers.Descriptor;
-using RoslynHelpers.Descriptor.Exceptions;
 using RoslynHelpers.Tests.ResourceResolving.TestData;
+using RoslynHelpers.TypeResolution;
+using RoslynHelpers.TypeResolution.Exceptions;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving;

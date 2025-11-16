@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 
 
-namespace RoslynHelpers.Descriptor.Exceptions;
+namespace RoslynHelpers.TypeResolution.Exceptions;
 
 public sealed class UnableToResolveException<TResourceSource, TResource> : Exception
 {

@@ -1,4 +1,5 @@
 ﻿using System.Resources;
+using RoslynHelpers.TypeResolution;
 
 
 namespace RoslynHelpers.Descriptor.ResourceResolution;

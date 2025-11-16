@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using System.Linq.Expressions;
-using RoslynHelpers.Descriptor.Exceptions;
+using RoslynHelpers.TypeResolution.Exceptions;
 
 
-namespace RoslynHelpers.Descriptor;
+namespace RoslynHelpers.TypeResolution;
 
 internal static class ResolverBuilder<TResourceSource>
 {
